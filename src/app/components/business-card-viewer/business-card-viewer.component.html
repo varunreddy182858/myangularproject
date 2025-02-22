@@ -1,0 +1,23 @@
+<div *ngIf="cardData" class="card-container">
+  <div class="business-card">
+    <!-- Front Side -->
+    <div class="card-side front" [style.backgroundColor]="cardData.color">
+      <div class="logo-section">
+        <img *ngIf="cardData.logo" [src]="cardData.logo" alt="Logo" class="logo" />
+      </div>
+      <div class="details-section">
+        <p class="name"><strong>Business Name:</strong> {{ cardData.userName }}</p>
+        <p class="info"><strong>Address:</strong> {{ cardData.userAddress }}</p>
+        <p class="info"><strong>Phone:</strong> {{ cardData.userPhone }}</p>
+        <p class="info"><strong>Email:</strong> {{ cardData.usermail }}</p>
+      </div>
+    </div>
+
+    <!-- Back Side with QR Code -->
+    <div class="card-side back">
+      <p>Scan this QR Code:</p>
+      <qrcode [qrdata]="qrData" [width]="150" [errorCorrectionLevel]="'M'"></qrcode>
+    </div>
+  </div>
+</div>
+

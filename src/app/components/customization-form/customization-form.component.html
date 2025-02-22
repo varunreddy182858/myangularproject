@@ -1,0 +1,49 @@
+<div class="container">
+    <!-- Left Side: Business Card Preview -->
+    <div class="preview">
+        <h4>Business Card Preview</h4>
+        <app-business-card-preview
+            [userName]="userName"
+            [userAddress]="userAddress"
+            [userPhone]="userPhone"
+            [selectedColor]="selectedColor"
+            [logoUrl]="logoUrl"
+            [usermail]="usermail">
+        </app-business-card-preview>
+    </div>
+
+    <!-- Right Side: Customization Form -->
+    <div class="form">
+        <h2>Customize Your Card</h2>
+
+        <label>Name:</label>
+        <input type="text" [(ngModel)]="userName" placeholder="Enter Name" required />
+
+        <label>Address:</label>
+        <input type="text" [(ngModel)]="userAddress" placeholder="Enter Address" required />
+
+        <label>Phone Number:</label>
+        <input type="text" [(ngModel)]="userPhone" placeholder="Enter Phone Number" required />
+
+        <label>Email:</label>
+        <input type="email" [(ngModel)]="usermail" placeholder="Enter Email" required />
+
+        <label>Card Color:</label>
+        <input type="color" [(ngModel)]="selectedColor" required />
+
+        <label>Upload Logo:</label>
+        <input type="file" (change)="onLogoUpload($event)"  />
+        <p>*Preview of logo only after QR is generated</p>
+
+        <!-- Disable button if any field is empty -->
+        <button (click)="saveCardAndGenerateQRCode()" 
+                [disabled]="!userName || !userAddress || !userPhone || !usermail || !selectedColor ">
+            Generate QR Code
+        </button>
+
+        <div *ngIf="qrCodeUrl">
+            <h3>Your QR Code:</h3>
+            <img [src]="qrCodeUrl" alt="QR Code" />
+        </div>
+    </div>
+</div>
