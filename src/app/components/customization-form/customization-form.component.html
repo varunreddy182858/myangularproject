@@ -32,18 +32,24 @@
         <input type="color" [(ngModel)]="selectedColor" required />
 
         <label>Upload Logo:</label>
-        <input type="file" (change)="onLogoUpload($event)"  />
+        <input type="file" (change)="onLogoUpload($event)" />
         <p>*Preview of logo only after QR is generated</p>
 
         <!-- Disable button if any field is empty -->
         <button (click)="saveCardAndGenerateQRCode()" 
-                [disabled]="!userName || !userAddress || !userPhone || !usermail || !selectedColor ">
+                [disabled]="!userName || !userAddress || !userPhone || !usermail || !selectedColor">
             Generate QR Code
         </button>
 
+        <!-- QR Code Display & Download Option -->
         <div *ngIf="qrCodeUrl">
             <h3>Your QR Code:</h3>
             <img [src]="qrCodeUrl" alt="QR Code" />
+            <br/>
+            <a [href]="qrCodeUrl" download="business-card-qr.png">
+                <button>Download QR Code</button>
+            </a>
         </div>
     </div>
 </div>
+
